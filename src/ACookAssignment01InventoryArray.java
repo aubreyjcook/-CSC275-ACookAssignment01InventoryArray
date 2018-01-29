@@ -4,12 +4,12 @@ public class ACookAssignment01InventoryArray {
 	Scanner input = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		new Assignment01Driver();
+		new ACookAssignment01InventoryArray();
 
 	}
 	
 	// This will act as our program switchboard
-		public Assignment01Driver() {
+		public ACookAssignment01InventoryArray() {
 			String[] cargohold = new String[10];
 
 			System.out.println("Welcome to the BlackStar Cargo Hold interface.");
@@ -28,39 +28,75 @@ public class ACookAssignment01InventoryArray {
 				// Get the user input
 				int userChoice = input.nextInt();
 				input.nextLine();
-
+				
+				//Debug note: Simple array dummy data initialization.
+				/*for(int i = 0; i < cargohold.length; i++) {
+					cargohold[i] = "Dummy";
+				}*/
+				
+				
 				switch (userChoice) {
-				case 1:
-					addItem(cargohold);
-					break;
-				case 2:
-					removeItem(cargohold);
-					break;
-				case 3:
-					sortItems(cargohold);
-					break;
-				case 4:
-					searchItems(cargohold);
-					break;
-				case 5:
-					displayItems(cargohold);
-					break;
-				case 0:
-					System.out.println("Thank you for using the BlackStar Cargo Hold interface. See you again soon!");
-					System.exit(0);
+					case 1:
+						addItem(cargohold);
+						break;
+					case 2:
+						removeItem(cargohold);
+						break;
+					case 3:
+						sortItems(cargohold);
+						break;
+					case 4:
+						searchItems(cargohold);
+						break;
+					case 5:
+						displayItems(cargohold);
+						break;
+					case 0:
+						System.out.println("Thank you for using the BlackStar Cargo Hold interface. See you again soon!");
+						System.exit(0);
+					default:
+						System.out.println("Invalid value. Choose a number 0-5 only.");
+						break;
 				}
 			}
 
 		}
 
 		private void addItem(String cargohold[]) {
-			// TODO: Add an item that is specified by the user
-
+			if(Arrays.asList(cargohold).contains(null)) { //if statement checks if there is any empty value in the array
+				System.out.println("Enter the new item below.");
+				String userInput = input.nextLine();
+				for(int i = 0; i < cargohold.length; i++) {
+					if (cargohold[i]==null) {
+						cargohold[i] = userInput;
+						System.out.println(userInput + " has been added successfully.");
+						break;
+					}
+				}
+			} else {
+				System.out.println("The cargohold is full. You need to remove an item to add a new one.");
+			}
+			return;
 		}
 
 		private void removeItem(String cargohold[]) {
-			// TODO: Remove an item that is specified by the user
-
+			System.out.println("Enter item to be removed.");
+			String userInput = input.nextLine();
+			
+			if(Arrays.asList(cargohold).contains(userInput)) {
+				System.out.println("Array if statement evaluated that the value is contained in the array.");
+				for(int i = 0; i < cargohold.length; i++) {
+					if (userInput.toLowerCase() == cargohold[i].toLowerCase()) {
+						cargohold[i] = null;
+						System.out.println("Item removed.");
+						break;
+					}
+				}
+			} else {
+				System.out.println("That item is not in the cargohold.");
+			}
+			
+			return;
 		}
 
 		private void sortItems(String cargohold[]) {
@@ -81,7 +117,6 @@ public class ACookAssignment01InventoryArray {
 			// Food - 2
 			// Water - 3
 			// Ammunition - 5
-		}
-
-
+			System.out.println(Arrays.asList(cargohold));
+		}		
 }
