@@ -86,7 +86,7 @@ public class ACookAssignment01InventoryArray {
 			if(Arrays.asList(cargohold).contains(userInput)) {
 				System.out.println("Array if statement evaluated that the value is contained in the array.");
 				for(int i = 0; i < cargohold.length; i++) {
-					if (userInput.toLowerCase() == cargohold[i].toLowerCase()) {
+					if (cargohold[i].equals(userInput)) {
 						cargohold[i] = null;
 						System.out.println("Item removed.");
 						break;
@@ -102,7 +102,19 @@ public class ACookAssignment01InventoryArray {
 		private void sortItems(String cargohold[]) {
 			// TODO: Sort the items in the cargo hold (No need to display them here) - Use Selection or Insertion sorts
 			// NOTE: Special care is needed when dealing with strings! research the compareTo() method with strings
-
+			for (int i = 0; i < cargohold.length-1; i++) {
+				int minimum = i;
+				for (int j = i + 1; j < cargohold.length; j++) {
+					if(cargohold[j].compareTo(cargohold[minimum]) < 0) {
+						minimum = j;
+					}
+				}
+				String transfer = cargohold[i];
+				cargohold[i] = cargohold[minimum];
+				cargohold[i] = transfer;
+			}
+			System.out.println("Carghold sorted.");
+			return;
 		}
 
 		private void searchItems(String cargohold[]) {
