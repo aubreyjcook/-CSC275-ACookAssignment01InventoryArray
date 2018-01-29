@@ -31,7 +31,7 @@ public class ACookAssignment01InventoryArray {
 				
 				//Debug note: Simple array dummy data initialization.
 				/*for(int i = 0; i < cargohold.length; i++) {
-					cargohold[i] = "Dummy";
+					cargohold[i] = "null";
 				}*/
 				
 				
@@ -102,18 +102,23 @@ public class ACookAssignment01InventoryArray {
 		private void sortItems(String cargohold[]) {
 			// TODO: Sort the items in the cargo hold (No need to display them here) - Use Selection or Insertion sorts
 			// NOTE: Special care is needed when dealing with strings! research the compareTo() method with strings
-			for (int i = 0; i < cargohold.length-1; i++) {
+			for (int i = 0; i < cargohold.length-1; ++i) {
 				int minimum = i;
-				for (int j = i + 1; j < cargohold.length; j++) {
-					if(cargohold[j].compareTo(cargohold[minimum]) < 0) {
-						minimum = j;
+				//System.out.println(minimum);
+				for (int j = i + 1; j < cargohold.length; ++j) {
+					//System.out.println(j);
+					/*System.out.println(cargohold[i].compareTo(cargohold[minimum]));*/
+					if(cargohold[j] != null) {
+						if(cargohold[j].compareTo(cargohold[minimum]) < 0) {
+							minimum = j;
+							String transfer = cargohold[i];
+							cargohold[i] = cargohold[minimum];
+							cargohold[j] = transfer;
+						}
 					}
 				}
-				String transfer = cargohold[i];
-				cargohold[i] = cargohold[minimum];
-				cargohold[i] = transfer;
 			}
-			System.out.println("Carghold sorted.");
+			System.out.println("Cargohold sorted.");
 			return;
 		}
 
