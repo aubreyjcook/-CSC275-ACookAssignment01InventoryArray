@@ -11,6 +11,8 @@ public class ACookAssignment01InventoryArray {
 	// This will act as our program switchboard
 		public ACookAssignment01InventoryArray() {
 			String[] cargohold = new String[10];
+			//Debug Note: Array Initialization used below is used to add dummy data for testing.
+			//String[] cargohold = new String[]{"zone","box",null,"text","uranium",null,"cold","arrow","baby","nine"};
 
 			System.out.println("Welcome to the BlackStar Cargo Hold interface.");
 			System.out.println("Please select a number from the options below");
@@ -33,7 +35,6 @@ public class ACookAssignment01InventoryArray {
 				/*for(int i = 0; i < cargohold.length; i++) {
 					cargohold[i] = "null";
 				}*/
-				
 				
 				switch (userChoice) {
 					case 1:
@@ -84,7 +85,7 @@ public class ACookAssignment01InventoryArray {
 			String userInput = input.nextLine();
 			
 			if(Arrays.asList(cargohold).contains(userInput)) {
-				System.out.println("Array if statement evaluated that the value is contained in the array.");
+				/*System.out.println("Array if statement evaluated that the value is contained in the array.");*/
 				for(int i = 0; i < cargohold.length; i++) {
 					if (cargohold[i].equals(userInput)) {
 						cargohold[i] = null;
@@ -102,18 +103,49 @@ public class ACookAssignment01InventoryArray {
 		private void sortItems(String cargohold[]) {
 			// TODO: Sort the items in the cargo hold (No need to display them here) - Use Selection or Insertion sorts
 			// NOTE: Special care is needed when dealing with strings! research the compareTo() method with strings
-			for (int i = 0; i < cargohold.length-1; ++i) {
-				int minimum = i;
-				//System.out.println(minimum);
-				for (int j = i + 1; j < cargohold.length; ++j) {
-					//System.out.println(j);
-					/*System.out.println(cargohold[i].compareTo(cargohold[minimum]));*/
-					if(cargohold[j] != null) {
-						if(cargohold[j].compareTo(cargohold[minimum]) < 0) {
-							minimum = j;
-							String transfer = cargohold[i];
-							cargohold[i] = cargohold[minimum];
-							cargohold[j] = transfer;
+			
+			//checking for null values in the array
+			int nullCounter = 0;
+			
+			for(int i= 0; i < cargohold.length; i++) {
+				if(cargohold[i]==null) {
+					nullCounter++;					
+				}
+			}
+			
+			//moves all null values to the end of the array
+			while(nullCounter > 0) {
+				for(int i = 0; i < cargohold.length; i++) {
+					if(cargohold[i]==null) {
+						for (int j = (i + 1); j < cargohold.length; j++) {
+							cargohold[j - 1] = cargohold[j];
+						}
+						cargohold[cargohold.length-1] = null;
+						break;
+					}
+				}
+				nullCounter--;
+			}
+			
+			
+			//sorting after moving null values to the end of the array
+			for(int x = 0; x < cargohold.length; x++) { //this for loop repeats the sorting process according to the length of the array to enhance sorting accuracy
+				for (int i = 0; i < cargohold.length-1; i++) {
+					int minimum = i;
+					//System.out.println(minimum);
+					for (int j = i + 1; j < cargohold.length; j++) {
+						//System.out.println(j);
+						//System.out.println(cargohold[i].compareTo(cargohold[minimum]));
+						if(cargohold[j] != null) {
+							if(cargohold[j].compareTo(cargohold[minimum]) < 0) {
+								minimum = j;
+								//Debug Note: Outputs array reassignments in real time. 
+								//System.out.println("Swapping " + cargohold[i] + " with " + cargohold[minimum]);
+								//System.out.println(Arrays.asList(cargohold));
+								String transfer = cargohold[i];
+								cargohold[i] = cargohold[minimum];
+								cargohold[j] = transfer;
+							}
 						}
 					}
 				}
