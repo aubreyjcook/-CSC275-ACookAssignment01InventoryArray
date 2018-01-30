@@ -10,9 +10,9 @@ public class ACookAssignment01InventoryArray {
 	
 	// This will act as our program switchboard
 		public ACookAssignment01InventoryArray() {
-			String[] cargohold = new String[10];
+			//String[] cargohold = new String[10];
 			//Debug Note: Array Initialization used below is used to add dummy data for testing.
-			//String[] cargohold = new String[]{"zone","box",null,"text","uranium",null,"cold","arrow","baby","nine"};
+			String[] cargohold = new String[]{"zone","box",null,"text","uranium",null,"cold","arrow","baby","nine"};
 
 			System.out.println("Welcome to the BlackStar Cargo Hold interface.");
 			System.out.println("Please select a number from the options below");
@@ -156,7 +156,18 @@ public class ACookAssignment01InventoryArray {
 
 		private void searchItems(String cargohold[]) {
 			// TODO: Search for a user specified item
-
+			System.out.println("Enter the item you wish to search for.");
+			String userInput = input.nextLine();
+			
+			for(int i = 0; i < cargohold.length; i++) {
+				if(cargohold[i] == null) {
+					continue;
+				} else if (userInput.equals(cargohold[i])) {
+					System.out.println("The item was found at section number " + (i + 1));
+					return;
+				}
+			}
+			System.out.println("The item was not found in the cargo hold.");
 		}
 
 		private void displayItems(String cargohold[]) {
