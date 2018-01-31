@@ -177,6 +177,8 @@ public class ACookAssignment01InventoryArray {
 			// Food - 2
 			// Water - 3
 			// Ammunition - 5
-			System.out.println(Arrays.asList(cargohold));
+			//System.out.println(Arrays.asList(cargohold));
+			
+			
 		}		
 }
