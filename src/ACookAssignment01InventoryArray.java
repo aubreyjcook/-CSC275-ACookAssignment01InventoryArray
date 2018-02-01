@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class ACookAssignment01InventoryArray {
@@ -12,7 +13,7 @@ public class ACookAssignment01InventoryArray {
 		public ACookAssignment01InventoryArray() {
 			//String[] cargohold = new String[10];
 			//Debug Note: Array Initialization used below is used to add dummy data for testing.
-			String[] cargohold = new String[]{"zone","box",null,"text","uranium",null,"cold","arrow","baby","nine"};
+			String[] cargohold = new String[]{"zone","zone",null,"baby","uranium",null,"cold","arrow","baby","nine"};
 
 			System.out.println("Welcome to the BlackStar Cargo Hold interface.");
 			System.out.println("Please select a number from the options below");
@@ -179,6 +180,21 @@ public class ACookAssignment01InventoryArray {
 			// Ammunition - 5
 			//System.out.println(Arrays.asList(cargohold));
 			
+			int count = Collections.frequency(Arrays.asList(cargohold), null);
+			String[] itemsFound = new String[10];
 			
+			if(count > 0) {
+				System.out.println("There are " + count + " empty spaces in the cargohold.");
+			}
+			
+			for (int i = 0; i < cargohold.length; i++) {
+				if (cargohold[i] != null && !(Arrays.asList(itemsFound).contains(cargohold[i]))) {
+					
+					count = Collections.frequency(Arrays.asList(cargohold), cargohold[i]);					
+					System.out.println("There are " + count + " " + cargohold[i] + " items in the cargohold.");
+					itemsFound[i] = cargohold[i];
+					
+				}
+			}
 		}		
 }
