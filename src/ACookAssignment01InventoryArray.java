@@ -88,7 +88,7 @@ public class ACookAssignment01InventoryArray {
 			if(Arrays.asList(cargohold).contains(userInput)) {
 				/*System.out.println("Array if statement evaluated that the value is contained in the array.");*/
 				for(int i = 0; i < cargohold.length; i++) {
-					if (cargohold[i].equals(userInput)) {
+					if (cargohold[i] != null && cargohold[i].equals(userInput)) {
 						cargohold[i] = null;
 						System.out.println("Item removed.");
 						break;
